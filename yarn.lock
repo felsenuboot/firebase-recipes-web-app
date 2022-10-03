@@ -7736,7 +7736,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.8.1:
+prop-types@^15.6.0, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8740,6 +8740,14 @@ styletron-engine-atomic@^1.5.0:
   integrity sha512-5rR6cbWqeKlrFUtIyw7aBe3Zn5XDCmxLJ6q7MAYwBCk6pbdBfj5MtoedH6KBygwjTNp7uddE536YrLvLP0N8/w==
   dependencies:
     inline-style-prefixer "^5.1.0"
+    styletron-standard "^3.1.0"
+
+styletron-react@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/styletron-react/-/styletron-react-6.1.0.tgz#77080d84a757fe5d997f05742534ec93cd0579b8"
+  integrity sha512-PHT5KUaTJKmZdA3W6lV7M+/mgn0+JzuFRiteVZHw3ApLlXwkAZMMy2NwyBwRfx/Q5EZyJvQtoOCif6hY0nVWaA==
+  dependencies:
+    prop-types "^15.6.0"
     styletron-standard "^3.1.0"
 
 styletron-standard@^3.1.0:
