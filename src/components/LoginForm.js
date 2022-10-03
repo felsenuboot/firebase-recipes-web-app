@@ -1,5 +1,8 @@
 import { useState } from "react";
 import FirebaseAuthService from "../FirebaseAuthService";
+import { FormControl } from "baseui/form-control";
+import { Input } from "baseui/input";
+import { Button } from "baseui/button";
 
 function LoginForm({ existingUser }) {
   const [username, setUsername] = useState("");
@@ -50,36 +53,31 @@ function LoginForm({ existingUser }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="login-form">
-          <label className="input-label login-label">
-            Username (email):
-            <input
+          <FormControl label="Username (Email)">
+            <Input
+              id="input-id0"
               type="email"
-              required
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="input-text"
+              onChange={(e) => setUsername(e.currentTarget.value)}
             />
-          </label>
-          <label className="input-label login-label">
-            Password:
-            <input
+          </FormControl>
+          <FormControl label="Password">
+            <Input
+              id="input-id1"
               type="password"
-              required
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input-text"
+              onChange={(e) => setPassword(e.currentTarget.value)}
             />
-          </label>
-          <div className="button-box">
-            <button className="primary-button">Login</button>
-            <button
-              type="button"
-              onClick={handleSendResetPasswordEmail}
-              className="primary-button"
-            >
-              Reset Password
-            </button>
-          </div>
+          </FormControl>
+          <Button type="submit">Login</Button>
+
+          <Button
+            type="button"
+            onClick={handleSendResetPasswordEmail}
+            className="primary-button"
+          >
+            Reset Password
+          </Button>
         </form>
       )}
     </div>
