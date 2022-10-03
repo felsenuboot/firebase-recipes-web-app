@@ -3,6 +3,9 @@ import FirebaseAuthService from "../FirebaseAuthService";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Button } from "baseui/button";
+import { ButtonGroup } from "baseui/button-group";
+import { HeadingMedium } from "baseui/typography";
+import { Card, StyledBody, StyledAction } from "baseui/card";
 
 function LoginForm({ existingUser }) {
   const [username, setUsername] = useState("");
@@ -41,44 +44,56 @@ function LoginForm({ existingUser }) {
   return (
     <div className="login-form-container">
       {existingUser ? (
-        <div className="row">
-          <h3>Welcome, {existingUser.email}</h3>
-          <button
-            type="button"
-            className="primary-button"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div>
+        <Card>
+          <StyledBody>
+            <HeadingMedium> Welcome, {existingUser.email} </HeadingMedium>
+          </StyledBody>
+          <StyledAction>
+            <Button
+              overrides={{
+                BaseButton: { style: { width: "100%" } },
+              }}
+              type="button"
+              className="primary-button"
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          </StyledAction>
+        </Card>
       ) : (
-        <form onSubmit={handleSubmit} className="login-form">
-          <FormControl label="Username (Email)">
-            <Input
-              id="input-id0"
-              type="email"
-              value={username}
-              onChange={(e) => setUsername(e.currentTarget.value)}
-            />
-          </FormControl>
-          <FormControl label="Password">
-            <Input
-              id="input-id1"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-            />
-          </FormControl>
-          <Button type="submit">Login</Button>
-
-          <Button
-            type="button"
-            onClick={handleSendResetPasswordEmail}
-            className="primary-button"
-          >
-            Reset Password
-          </Button>
-        </form>
+        <Card>
+          <form onSubmit={handleSubmit} className="login-form">
+            <FormControl label="Username (Email)">
+              <Input
+                id="input-id0"
+                type="email"
+                value={username}
+                onChange={(e) => setUsername(e.currentTarget.value)}
+              />
+            </FormControl>
+            <FormControl label="Password">
+              <Input
+                id="input-id1"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+              />
+            </FormControl>
+            <StyledAction>
+              <ButtonGroup>
+                <Button type="submit"> Login </Button>
+                <Button
+                  type="button"
+                  onClick={handleSendResetPasswordEmail}
+                  className="primary-button"
+                >
+                  Reset Password
+                </Button>
+              </ButtonGroup>
+            </StyledAction>
+          </form>
+        </Card>
       )}
     </div>
   );

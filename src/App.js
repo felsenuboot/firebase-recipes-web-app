@@ -3,6 +3,7 @@ import FirebaseAuthService from "./FirebaseAuthService";
 import LoginForm from "./components/LoginForm";
 //import "./App.css";
 import { Heading, HeadingLevel } from "baseui/heading";
+import { Grid, Cell } from "baseui/layout-grid";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -11,10 +12,12 @@ function App() {
 
   return (
     <div className="App">
-      <HeadingLevel>
-        <Heading>Firebase Recipes</Heading>
-      </HeadingLevel>
-      <LoginForm existingUser={user}></LoginForm>
+      <div>
+        <HeadingLevel>
+          <Heading> Firebase Recipes </Heading>{" "}
+        </HeadingLevel>
+        <LoginForm existingUser={user}> </LoginForm>
+      </div>
     </div>
   );
 }

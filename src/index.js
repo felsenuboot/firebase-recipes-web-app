@@ -27,8 +27,8 @@ root.render(
     <BaseProvider theme={LightTheme}>
       <Centered>
         <App />{" "}
-      </Centered>
-    </BaseProvider>
+      </Centered>{" "}
+    </BaseProvider>{" "}
   </StyletronProvider>
 );
 
