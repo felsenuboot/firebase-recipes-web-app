@@ -23,12 +23,11 @@ const Centered = styled("div", {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-    {" "}
     <BaseProvider theme={LightTheme}>
       <Centered>
-        <App />{" "}
-      </Centered>{" "}
-    </BaseProvider>{" "}
+        <App />
+      </Centered>
+    </BaseProvider>
   </StyletronProvider>
 );
 
