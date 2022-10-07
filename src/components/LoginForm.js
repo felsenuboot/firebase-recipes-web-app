@@ -42,12 +42,9 @@ function LoginForm({ existingUser }) {
   }
 
   return (
-    <div className="login-form-container">
+    <div>
       {existingUser ? (
-        <Card>
-          <StyledBody>
-            <HeadingMedium> Welcome, {existingUser.email} </HeadingMedium>
-          </StyledBody>
+        <Card title={"Welcome, " + existingUser.email}>
           <StyledAction>
             <Button
               overrides={{
@@ -62,38 +59,34 @@ function LoginForm({ existingUser }) {
           </StyledAction>
         </Card>
       ) : (
-        <Card>
-          <form onSubmit={handleSubmit} className="login-form">
-            <FormControl label="Username (Email)">
-              <Input
-                id="input-id0"
-                type="email"
-                value={username}
-                onChange={(e) => setUsername(e.currentTarget.value)}
-              />
-            </FormControl>
-            <FormControl label="Password">
-              <Input
-                id="input-id1"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.currentTarget.value)}
-              />
-            </FormControl>
-            <StyledAction>
-              <ButtonGroup>
-                <Button type="submit"> Login </Button>
-                <Button
-                  type="button"
-                  onClick={handleSendResetPasswordEmail}
-                  className="primary-button"
-                >
-                  Reset Password
-                </Button>
-              </ButtonGroup>
-            </StyledAction>
-          </form>
-        </Card>
+        <form onSubmit={handleSubmit}>
+          <FormControl label="Username (Email)">
+            <Input
+              id="input-id0"
+              type="email"
+              value={username}
+              onChange={(e) => setUsername(e.currentTarget.value)}
+            />
+          </FormControl>
+          <FormControl label="Password">
+            <Input
+              id="input-id1"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.currentTarget.value)}
+            />
+          </FormControl>
+          <ButtonGroup>
+            <Button type="submit"> Login </Button>
+            <Button
+              type="button"
+              onClick={handleSendResetPasswordEmail}
+              className="primary-button"
+            >
+              Reset Password
+            </Button>
+          </ButtonGroup>
+        </form>
       )}
     </div>
   );

@@ -1,13 +1,12 @@
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Select } from "baseui/select";
-import { Card } from "baseui/card";
 import { Textarea } from "baseui/textarea";
 import { DatePicker } from "baseui/datepicker";
 import { List, arrayMove, arrayRemove } from "baseui/dnd-list";
-import { Notification, KIND } from "baseui/notification";
+import { Banner, HIERARCHY } from "baseui/banner";
 import { useState } from "react";
-import { HeadingMedium, HeadingSmall } from "baseui/typography";
+import { HeadingSmall } from "baseui/typography";
 import { Button, KIND as BUTTON_KIND } from "baseui/button";
 import { Plus } from "baseui/icon";
 
@@ -58,107 +57,102 @@ function AddEditRecipeForm({ handleAddRecipe }) {
   }
 
   return (
-    <Card>
-      <form
-        onSubmit={handleRecipeFormSubmit}
-        className="add-edit-recipe-form-container"
-      >
-        <HeadingMedium>Add a New Recipe</HeadingMedium>
-        <FormControl label={() => "Recipe Name"}>
-          <Input
-            id="recipe-name-label"
-            type="text"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </FormControl>
-        <FormControl label={() => "Category"}>
-          <Select
-            id="recipe-category-label"
-            value={category}
-            onChange={(category) => setCategory(category.value)}
-            options={[
-              {
-                label: "Breads, Sandwiches, and Pizza",
-                id: "breadsSandwischesAndPizza",
-              },
-              {
-                label: "Eggs & Breakfast",
-                id: "eggsAndBreakfast",
-              },
-              {
-                label: "Desserts & Baked Goods",
-                id: "dessertsAndBakedGoods",
-              },
-              {
-                label: "Fish & Seafood",
-                id: "fishAndSeafood",
-              },
-              {
-                label: "Vegetables",
-                id: "vegetables",
-              },
-            ]}
-            required
-          />
-        </FormControl>
-        <FormControl label="Directions">
-          <Textarea
-            id="recipe-directions-label"
-            required
-            value={directions}
-            onChange={(e) => setDirections(e.target.value)}
-            placeholder="Directions"
-          />
-        </FormControl>
-        <FormControl label="Pick a publishing Date">
-          <DatePicker
-            id="recipe-publish-date"
-            value={publishDate}
-            required
-            onChange={({ date }) =>
-              setPublishDate(Array.isArray(date) ? date : [date])
-            }
-          />
-        </FormControl>
-        <HeadingSmall>Ingredients</HeadingSmall>
-        {ingredients && ingredients.length > 0 ? (
-          <List
-            items={ingredients}
-            removable
-            onChange={({ oldIndex, newIndex }) =>
-              setIngredients(
-                newIndex === -1
-                  ? arrayRemove(ingredients, oldIndex)
-                  : arrayMove(ingredients, oldIndex, newIndex)
-              )
-            }
-          />
-        ) : null}
-        {ingredients && ingredients.length === 0 ? (
-          <Notification kind={KIND.negative}>
-            {() => "No Ingredients Added Yet!"}
-          </Notification>
-        ) : null}
-        <FormControl>
-          <Input
-            value={ingredientName}
-            onChange={(e) => setIngredientName(e.target.value)}
-            onKeyPress={handleAddIngredient}
-            placeholder="e.g. 1 cup of sugar"
-          />
-        </FormControl>
-        <FormControl>
-          <Button kind={BUTTON_KIND.secondary} onClick={handleAddIngredient}>
-            <Plus /> Add Ingredient
-          </Button>
-        </FormControl>
-        <FormControl>
-          <Button type="submit">Create Recipe</Button>
-        </FormControl>
-      </form>
-    </Card>
+    <form
+      onSubmit={handleRecipeFormSubmit}
+      className="add-edit-recipe-form-container"
+    >
+      <FormControl label={() => "Recipe Name"}>
+        <Input
+          id="recipe-name-label"
+          type="text"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormControl>
+      <FormControl label={() => "Category"}>
+        <Select
+          id="recipe-category-label"
+          value={category}
+          onChange={(category) => setCategory(category.value)}
+          options={[
+            {
+              label: "Breads, Sandwiches, and Pizza",
+              id: "breadsSandwischesAndPizza",
+            },
+            {
+              label: "Eggs & Breakfast",
+              id: "eggsAndBreakfast",
+            },
+            {
+              label: "Desserts & Baked Goods",
+              id: "dessertsAndBakedGoods",
+            },
+            {
+              label: "Fish & Seafood",
+              id: "fishAndSeafood",
+            },
+            {
+              label: "Vegetables",
+              id: "vegetables",
+            },
+          ]}
+          required
+        />
+      </FormControl>
+      <FormControl label="Directions">
+        <Textarea
+          id="recipe-directions-label"
+          required
+          value={directions}
+          onChange={(e) => setDirections(e.target.value)}
+          placeholder="Directions"
+        />
+      </FormControl>
+      <FormControl label="Pick a publishing Date">
+        <DatePicker
+          id="recipe-publish-date"
+          value={publishDate}
+          required
+          onChange={({ date }) =>
+            setPublishDate(Array.isArray(date) ? date : [date])
+          }
+        />
+      </FormControl>
+      <HeadingSmall>Ingredients</HeadingSmall>
+      {ingredients && ingredients.length > 0 ? (
+        <List
+          items={ingredients}
+          removable
+          onChange={({ oldIndex, newIndex }) =>
+            setIngredients(
+              newIndex === -1
+                ? arrayRemove(ingredients, oldIndex)
+                : arrayMove(ingredients, oldIndex, newIndex)
+            )
+          }
+        />
+      ) : null}
+      {ingredients && ingredients.length === 0 ? (
+        <Banner hierarchy={HIERARCHY.high}>No Ingredients Added Yet!</Banner>
+      ) : null}
+      <FormControl>
+        <Input
+          value={ingredientName}
+          onChange={(e) => setIngredientName(e.target.value)}
+          onKeyPress={handleAddIngredient}
+          placeholder="e.g. 1 cup of sugar"
+        />
+      </FormControl>
+      <FormControl>
+        <Button kind={BUTTON_KIND.secondary} onClick={handleAddIngredient}>
+          <Plus /> Add Ingredient
+        </Button>
+      </FormControl>
+      <FormControl>
+        <Button type="submit">Create Recipe</Button>
+      </FormControl>
+    </form>
   );
 }
 

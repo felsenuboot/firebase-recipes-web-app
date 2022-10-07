@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { LightTheme, BaseProvider, styled } from "baseui";
-//import { StatefulInput } from "baseui/input";
 
 const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
@@ -18,6 +17,7 @@ const Centered = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   height: "100%",
+  width: "100%",
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
