@@ -4,8 +4,7 @@ import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import { Button } from "baseui/button";
 import { ButtonGroup } from "baseui/button-group";
-import { HeadingMedium } from "baseui/typography";
-import { Card, StyledBody, StyledAction } from "baseui/card";
+import { Card, StyledAction } from "baseui/card";
 
 function LoginForm({ existingUser }) {
   const [username, setUsername] = useState("");

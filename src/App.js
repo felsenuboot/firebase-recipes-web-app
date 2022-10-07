@@ -7,6 +7,7 @@ import AddEditRecipeForm from "./components/AddEditRecipeForm";
 import FirebaseFirestoreService from "./FirebaseFirestoreService";
 import * as React from "react";
 import { Accordion, Panel } from "baseui/accordion";
+import { Card, StyledBody } from "baseui/card";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +36,6 @@ function App() {
         const id = recipeDoc.id;
         const data = recipeDoc.data();
         data.publishDate = new Date(data.publishDate.seconds * 1000);
-
         return { ...data, id };
       });
 
@@ -77,20 +77,34 @@ function App() {
     <div>
       <HeadingXLarge> Firebase Recipes </HeadingXLarge>
       <LoginForm existingUser={user}> </LoginForm>
-      {user ? (
-        <div>
-          <Accordion
-            onChange={({ expanded }) => console.log(expanded)}
-            accordion
-          >
-            <Panel title="Add a Recipe">
-              <AddEditRecipeForm
-                handleAddRecipe={handleAddRecipe}
-              ></AddEditRecipeForm>
-            </Panel>
-          </Accordion>
-        </div>
-      ) : null}
+      <Accordion onChange={({ expanded }) => console.log(expanded)} accordion>
+        {recipes && recipes.length > 0 ? (
+          <Panel title="Recipes">
+            {recipes.map((recipe) => {
+              return (
+                <Card key={recipe.id} title={recipe.name}>
+                  <StyledBody>
+                    <div className="recipe-field">
+                      Category : {recipe.category[0].label}
+                    </div>
+                    <div className="recipe-field">
+                      Publish Date: {recipe.publishDate.toString()}
+                    </div>
+                  </StyledBody>
+                </Card>
+              );
+            })}
+          </Panel>
+        ) : null}
+
+        {user ? (
+          <Panel title="Add a Recipe">
+            <AddEditRecipeForm
+              handleAddRecipe={handleAddRecipe}
+            ></AddEditRecipeForm>
+          </Panel>
+        ) : null}
+      </Accordion>
     </div>
   );
 }
